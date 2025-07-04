@@ -4,7 +4,7 @@ type Meta = {
   is_end: boolean;
 };
 
-type Document = {
+export type Document = {
   title: string;
   contents: string;
   url: string;
