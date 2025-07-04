@@ -10,7 +10,7 @@ export default function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
+        {import.meta.env.MODE !== "production" && <ReactQueryDevtools initialIsOpen={false} />}
         <Suspense fallback={<div>로딩 중...</div>}>
           <Routes />
         </Suspense>
