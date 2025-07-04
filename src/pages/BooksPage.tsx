@@ -1,7 +1,9 @@
+import PageTitle from "@/components/shared/PageTitle";
+
 export default function BooksPage() {
   return (
     <div>
-      <h1>BooksPage</h1>
+      <PageTitle>도서 검색</PageTitle>
     </div>
   );
 }
