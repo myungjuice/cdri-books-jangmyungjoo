@@ -1,7 +1,9 @@
+import PageTitle from "@/components/shared/PageTitle";
+
 export default function WishlistPage() {
   return (
     <div>
-      <h1>WishlistPage</h1>
+      <PageTitle>내가 찜한 책</PageTitle>
     </div>
   );
 }

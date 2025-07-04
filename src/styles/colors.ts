@@ -8,6 +8,7 @@ const colors = {
   "light-gray": "#F2F4F6",
   white: "#FFFFFF",
   black: "#222222",
+  "text-title": "#1A1E27",
   "text-sub-title": "#8D94A0",
   "text-primary": "#353C49",
   "text-secondary": "#6D7582",
