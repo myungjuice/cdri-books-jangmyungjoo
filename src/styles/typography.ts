@@ -31,6 +31,14 @@ const typography = {
       letterSpacing: "0%",
     },
   ],
+  "body-medium": [
+    "16px",
+    {
+      fontWeight: 500,
+      lineHeight: "24px",
+      letterSpacing: "0%",
+    },
+  ],
   "body-2": [
     "14px",
     {
@@ -52,6 +60,14 @@ const typography = {
     {
       fontWeight: 500,
       lineHeight: "16px",
+      letterSpacing: "0%",
+    },
+  ],
+  "caption-medium": [
+    "14px",
+    {
+      fontWeight: 500,
+      lineHeight: "22px",
       letterSpacing: "0%",
     },
   ],
