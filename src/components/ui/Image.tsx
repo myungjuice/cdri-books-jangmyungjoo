@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import Spinner from "@/components/shared/Spinner";
 import { cn } from "@/libs/utils";
 
 type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
@@ -18,18 +19,19 @@ export default function Image({ src, alt, fallbackSrc, loader, className, ...pro
   }, [src]);
 
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block h-full w-full">
       {loading &&
         (loader ?? (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="border-t-primary h-6 w-6 animate-spin rounded-full border-2 border-gray-300" />
+          <div className="bg-light-gray inset-0 flex h-full w-full items-center justify-center">
+            <Spinner size="md" />
           </div>
         ))}
+
       <img
         src={imgSrc}
         alt={alt}
         loading="lazy"
-        className={cn(className, loading && "invisible")}
+        className={cn("w-full", className, loading && "invisible")}
         onLoad={() => setLoading(false)}
         onError={() => {
           if (fallbackSrc) setImgSrc(fallbackSrc);
