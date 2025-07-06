@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getBooks } from "@/domains/books/apis";
 import { useSearchStore } from "@/domains/books/store/searchStore";
 
-export default function BooksListSection() {
+export default function BookListSection() {
   const submittedSearch = useSearchStore((state) => state.submittedSearch);
 
   const { data, isFetching, isError } = useQuery({
