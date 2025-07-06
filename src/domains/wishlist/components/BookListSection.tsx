@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 
 import BookList from "@/components/shared/Book/BookList";
 import { usePagination } from "@/hooks/usePagination";
@@ -28,6 +28,13 @@ export default function BookListSection() {
       documents: getPagedList(wishlist, page, PAGE_SIZE),
     }),
     [page, endPage, total, wishlist, getPagedList],
+  );
+
+  useEffect(
+    () => () => {
+      setPage(1);
+    },
+    [setPage],
   );
 
   return (

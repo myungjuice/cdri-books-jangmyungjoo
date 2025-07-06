@@ -1,4 +1,4 @@
-import { useState, useRef, type ChangeEvent, type KeyboardEvent } from "react";
+import { useState, useRef, useEffect, type ChangeEvent, type KeyboardEvent } from "react";
 
 import SearchInput from "@/components/shared/SearchInput";
 import Button from "@/components/ui/Button";
@@ -14,6 +14,7 @@ export default function BookSearchSection() {
   const search = useSearchStore((state) => state.search);
   const setSearch = useSearchStore((state) => state.setSearch);
   const setSubmittedSearch = useSearchStore((state) => state.setSubmittedSearch);
+  const clearSubmittedSearch = useSearchStore((state) => state.clearSubmittedSearch);
 
   function handleSearchChange(e: ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value);
@@ -40,6 +41,13 @@ export default function BookSearchSection() {
     setSubmittedSearch(keyword);
     inputRef.current?.blur();
   }
+
+  useEffect(
+    () => () => {
+      clearSubmittedSearch();
+    },
+    [clearSubmittedSearch],
+  );
 
   return (
     <section className="flex items-center gap-4">
