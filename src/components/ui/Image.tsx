@@ -25,7 +25,7 @@ export default function Image({ src, alt, fallbackSrc, loader, className, ...pro
       {imgSrc &&
         loading &&
         (loader ?? (
-          <div className="bg-light-gray inset-0 flex h-full w-full items-center justify-center">
+          <div className="inset-0 flex h-full w-full items-center justify-center">
             <Spinner size="md" />
           </div>
         ))}

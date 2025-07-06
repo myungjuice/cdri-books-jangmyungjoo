@@ -7,7 +7,6 @@ type WishlistStoreState = {
   wishlist: Document[];
   page: number;
   total: number;
-  pagedWishlist: Document[];
   addToWishlist: (book: Document) => void;
   removeFromWishlist: (isbn: string) => void;
   clearWishlist: () => void;
@@ -16,22 +15,13 @@ type WishlistStoreState = {
 
 const PAGE_SIZE = 10;
 
-function getPagedWishlist(wishlist: Document[], page: number) {
-  const start = (page - 1) * PAGE_SIZE;
-  return wishlist.slice(start, start + PAGE_SIZE);
-}
-
 export const useWishlistStore = create<WishlistStoreState>()(
   devtools(
     persist(
-      (set, get) => ({
+      (set) => ({
         wishlist: [],
         page: 1,
         total: 0,
-        get pagedWishlist() {
-          const { wishlist, page } = get();
-          return getPagedWishlist(wishlist, page);
-        },
         addToWishlist: (book) => {
           set((state) => {
             if (state.wishlist.some((b) => b.isbn === book.isbn)) return state;

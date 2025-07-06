@@ -23,18 +23,20 @@ type Props = {
   currentPage: number;
   startPage: number;
   endPage: number;
+  isWishlist?: boolean;
   onPageChange: (page: number) => void;
 };
 
 type BookListWrapperProps = PropsWithChildren & {
   totalCount?: number;
+  isWishlist?: boolean;
 };
 
-function BookListWrapper({ children, totalCount }: BookListWrapperProps) {
+function BookListWrapper({ children, totalCount, isWishlist }: BookListWrapperProps) {
   return (
     <div>
       <div className="text-text-primary text-caption mt-4 flex items-center gap-2">
-        <p>도서 검색 결과</p>
+        <p>{isWishlist ? "찜한 책" : "도서 검색 결과"}</p>
         <p>
           총 <span className="text-primary">{(totalCount ?? 0).toLocaleString()}</span>건
         </p>
@@ -51,6 +53,7 @@ export default function BookListSection({
   currentPage,
   startPage,
   endPage,
+  isWishlist,
   onPageChange,
 }: Props) {
   const [openAccordionValue, setOpenAccordionValue] = useState<string>("-1");
@@ -61,7 +64,7 @@ export default function BookListSection({
 
   if (isLoading) {
     return (
-      <BookListWrapper>
+      <BookListWrapper isWishlist={isWishlist}>
         <SpinnerPage />
       </BookListWrapper>
     );
@@ -69,7 +72,7 @@ export default function BookListSection({
 
   if (isError) {
     return (
-      <BookListWrapper>
+      <BookListWrapper isWishlist={isWishlist}>
         <Error />
       </BookListWrapper>
     );
@@ -77,14 +80,14 @@ export default function BookListSection({
 
   if (data?.meta.total_count === 0) {
     return (
-      <BookListWrapper>
-        <Empty />
+      <BookListWrapper isWishlist={isWishlist}>
+        <Empty text={isWishlist ? "찜한 책이 없습니다." : "검색된 결과가 없습니다."} />
       </BookListWrapper>
     );
   }
 
   return (
-    <BookListWrapper totalCount={data?.meta.total_count}>
+    <BookListWrapper totalCount={data?.meta.total_count} isWishlist={isWishlist}>
       <Accordion
         type="single"
         collapsible
