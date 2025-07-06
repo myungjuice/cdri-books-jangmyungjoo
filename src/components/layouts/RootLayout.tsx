@@ -1,19 +1,8 @@
-import NProgress from "nprogress";
-import { useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+
+import ProgressBar from "@/components/shared/ProgressBar";
 
 import Header from "./Header";
-
-function ProgressBar() {
-  const location = useLocation();
-
-  useEffect(() => {
-    NProgress.start();
-    NProgress.done();
-  }, [location]);
-
-  return null;
-}
 
 export default function RootLayout() {
   return (
