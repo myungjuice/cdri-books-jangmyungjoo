@@ -97,6 +97,7 @@ src/
 - **로딩 및 에러처리**: API 요청시 로딩 및 에러처리를 추가하여 사용자 경험을 높였습니다.
 - **이미지 컴포넌트**: 커스텀 Image 컴포넌트로 로딩/에러 처리하였습니다.
 - **task 관리**: 해야 할 일을 issue로 최대한 작성하여 일을 효율적으로 관리했습니다.
+  - [[⛳ Goal: 사전과제 제출]](https://github.com/myungjuice/cdri-books-jangmyungjoo/issues/1) 에서 issue를 확인하실 수 있습니다!
 
 ---
 
