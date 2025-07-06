@@ -1,4 +1,4 @@
-import { useState, type PropsWithChildren } from "react";
+import { useState, useEffect, type PropsWithChildren } from "react";
 
 import Empty from "@/components/shared/Empty";
 import Error from "@/components/shared/Error";
@@ -59,6 +59,10 @@ export default function BookListSection({
   function handleAccordionValueChange(value: string) {
     setOpenAccordionValue(value);
   }
+
+  useEffect(() => {
+    setOpenAccordionValue("-1");
+  }, [currentPage]);
 
   if (isLoading) {
     return (
