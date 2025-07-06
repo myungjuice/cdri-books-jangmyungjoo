@@ -7,7 +7,7 @@ type Props = {
 
 export default function Empty({ text }: Props) {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 py-8">
+    <div className="flex flex-col items-center justify-center gap-4 py-20">
       <div className="flex items-center justify-center rounded-full">
         <Image src={EmptyImage} alt="Empty" className="h-20 w-20 object-contain" />
       </div>

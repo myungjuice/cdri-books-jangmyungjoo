@@ -17,7 +17,6 @@
   --black: #222222;
 }
 
-html,
-body {
+* {
   font-family: "Noto Sans KR", sans-serif;
 }

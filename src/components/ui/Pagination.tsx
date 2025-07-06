@@ -1,6 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from "lucide-react";
 import * as React from "react";
-import { Link } from "react-router-dom";
 
 import Button from "@/components/ui/Button";
 import { cn } from "@/libs/utils";
@@ -33,32 +32,20 @@ function PaginationItem({ ...props }: React.ComponentProps<"li">) {
 
 type PaginationLinkProps = {
   isActive?: boolean;
-} & Pick<React.ComponentProps<typeof Button>, "size"> &
-  React.ComponentProps<typeof Link>;
+  className?: string;
+  children?: React.ReactNode;
+  onClick?: () => void;
+} & React.ComponentProps<typeof Button>;
 
-function PaginationLink({
-  className,
-  isActive,
-  size = "icon",
-  children,
-  ...props
-}: PaginationLinkProps) {
+function PaginationLink({ className, isActive, children, ...props }: PaginationLinkProps) {
   return (
     <Button
-      asChild
       variant={isActive ? "default" : "ghost"}
-      size={size}
-      className={cn("p-0", className)}
+      size="sm"
+      className={cn("h-10 w-10 p-0", className)}
+      {...props}
     >
-      <Link
-        aria-current={isActive ? "page" : undefined}
-        data-slot="pagination-link"
-        data-active={isActive}
-        className="p-4"
-        {...props}
-      >
-        {children}
-      </Link>
+      {children}
     </Button>
   );
 }
@@ -72,7 +59,6 @@ function PaginationPrevious({ className, ...props }: React.ComponentProps<typeof
       {...props}
     >
       <ChevronLeftIcon />
-      <span className="hidden sm:block">이전</span>
     </PaginationLink>
   );
 }
@@ -85,7 +71,6 @@ function PaginationNext({ className, ...props }: React.ComponentProps<typeof Pag
       className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
       {...props}
     >
-      <span className="hidden sm:block">다음</span>
       <ChevronRightIcon />
     </PaginationLink>
   );
