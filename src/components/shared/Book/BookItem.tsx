@@ -1,4 +1,5 @@
 import { useMemo, type MouseEvent } from "react";
+import { toast } from "react-hot-toast";
 
 import HeartFillIcon from "@/assets/icons/heart-fill.svg?react";
 import HeartOutlineIcon from "@/assets/icons/heart-outline.svg?react";
@@ -73,9 +74,15 @@ export default function BookItem({ book, idx, openAccordionValue, onAccordionVal
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
+  function handleWishListAddClick(book: Document) {
+    addToWishlist(book);
+    toast.success("찜 목록에 추가되었습니다.");
+  }
+
   function handleWishListRemoveClick(isbn: string) {
     removeFromWishlist(isbn);
     if (isWishlist()) onAccordionValueChange("-1");
+    toast.success("찜 목록에서 삭제되었습니다.");
   }
 
   return (
@@ -122,7 +129,7 @@ export default function BookItem({ book, idx, openAccordionValue, onAccordionVal
                 ) : (
                   <button
                     type="button"
-                    onClick={() => addToWishlist(book)}
+                    onClick={() => handleWishListAddClick(book)}
                     className="cursor-pointer"
                   >
                     <HeartOutlineIcon />
