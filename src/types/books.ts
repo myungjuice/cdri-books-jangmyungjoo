@@ -4,6 +4,8 @@ type Meta = {
   is_end: boolean;
 };
 
+export type Target = "title" | "publisher" | "person";
+
 export type Document = {
   title: string;
   contents: string;
@@ -24,7 +26,7 @@ export type GetBooksRequest = {
   sort?: "accuracy" | "latest";
   page?: number;
   size?: number;
-  target?: "title" | "publisher" | "person";
+  target: Target;
 };
 
 export type GetBooksResponse = {
