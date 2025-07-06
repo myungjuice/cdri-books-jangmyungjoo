@@ -12,10 +12,11 @@ export default function BookListSection() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const submittedSearch = useSearchStore((state) => state.submittedSearch);
+  const target = useSearchStore((state) => state.target);
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["books", submittedSearch, currentPage],
-    queryFn: () => getBooks({ query: submittedSearch, page: currentPage, size: PAGE_SIZE }),
+    queryKey: ["books", submittedSearch, target, currentPage],
+    queryFn: () => getBooks({ query: submittedSearch, page: currentPage, size: PAGE_SIZE, target }),
   });
 
   const { totalPage, startPage, endPage } = usePagination({
@@ -31,7 +32,7 @@ export default function BookListSection() {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [submittedSearch]);
+  }, [submittedSearch, target]);
 
   return (
     <section>

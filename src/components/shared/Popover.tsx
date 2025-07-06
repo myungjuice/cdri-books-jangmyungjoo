@@ -6,18 +6,26 @@ type PopoverBoxProps = {
   trigger: React.ReactNode;
   children: React.ReactNode;
   contentClassName?: string;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 };
 
-export default function Popover({ trigger, children, contentClassName }: PopoverBoxProps) {
+export default function Popover({
+  trigger,
+  children,
+  contentClassName,
+  open,
+  onOpenChange,
+}: PopoverBoxProps) {
   return (
-    <RadixPopover.Root>
+    <RadixPopover.Root open={open} onOpenChange={onOpenChange}>
       <RadixPopover.Trigger asChild>{trigger}</RadixPopover.Trigger>
       <RadixPopover.Portal>
         <RadixPopover.Content
           side="bottom"
           align="start"
           className={
-            contentClassName ?? "z-50 h-[160px] w-[360px] rounded-lg bg-white p-6 shadow-lg"
+            contentClassName ?? "z-50 h-[160px] w-[360px] rounded-lg bg-white p-8 shadow-lg"
           }
           sideOffset={8}
         >
