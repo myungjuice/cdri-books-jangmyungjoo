@@ -4,6 +4,8 @@ import { Suspense } from "react";
 
 import { Routes } from "@/pages/Routes";
 
+import "nprogress/nprogress.css";
+
 const queryClient = new QueryClient();
 
 export default function App() {
