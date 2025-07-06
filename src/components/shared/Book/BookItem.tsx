@@ -33,7 +33,9 @@ function BookPrice({ price, sale_price }: { price: number; sale_price: number })
   return (
     <div className="flex flex-col items-end gap-2">
       <div className="flex items-center gap-2">
-        <span className="text-small text-text-sub-title pt-1">원가</span>
+        <span className="text-small text-text-sub-title pt-1">
+          {sale_price > -1 ? "원가" : "판매가"}
+        </span>
         <span
           className={cn(
             "text-text-primary text-title-3",
