@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 
+import type { Document } from "@/types/books";
+
 type Props = {
   totalCount: number;
   pageSize: number;
@@ -20,6 +22,11 @@ export function usePagination({ totalCount, pageSize, currentPage }: Props) {
     setEndPage(endPage);
   }, [currentPage, totalPage]);
 
+  function getPagedList(allList: Document[], page: number, pageSize: number) {
+    const start = (page - 1) * pageSize;
+    return allList.slice(start, start + pageSize);
+  }
+
   useEffect(() => {
     getPageRange();
   }, [getPageRange]);
@@ -28,5 +35,6 @@ export function usePagination({ totalCount, pageSize, currentPage }: Props) {
     totalPage,
     startPage,
     endPage,
+    getPagedList,
   };
 }
