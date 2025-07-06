@@ -1,13 +1,13 @@
 import { create } from "zustand";
 import { persist, devtools } from "zustand/middleware";
 
-type BooksStoreState = {
+type SearchHistoryStoreState = {
   searchHistory: string[];
   addSearchHistory: (keyword: string) => void;
   removeSearchHistory: (keyword: string) => void;
 };
 
-export const useBooksStore = create<BooksStoreState>()(
+export const useSearchHistoryStore = create<SearchHistoryStoreState>()(
   devtools(
     persist(
       (set, get) => ({
@@ -23,9 +23,9 @@ export const useBooksStore = create<BooksStoreState>()(
         },
       }),
       {
-        name: "CDRI_BOOKS_SEARCH_HISTORY",
+        name: "CDRI_SEARCH_HISTORY",
       },
     ),
-    { name: "BooksStore" },
+    { name: "SearchHistoryStore" },
   ),
 );
