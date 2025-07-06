@@ -12,6 +12,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/Pagination";
+import { isWishlist } from "@/libs/utils";
 import type { GetBooksResponse } from "@/types/books";
 
 import BookItem from "./BookItem";
@@ -23,20 +24,18 @@ type Props = {
   currentPage: number;
   startPage: number;
   endPage: number;
-  isWishlist?: boolean;
   onPageChange: (page: number) => void;
 };
 
 type BookListWrapperProps = PropsWithChildren & {
   totalCount?: number;
-  isWishlist?: boolean;
 };
 
-function BookListWrapper({ children, totalCount, isWishlist }: BookListWrapperProps) {
+function BookListWrapper({ children, totalCount }: BookListWrapperProps) {
   return (
     <div>
       <div className="text-text-primary text-caption mt-4 flex items-center gap-2">
-        <p>{isWishlist ? "찜한 책" : "도서 검색 결과"}</p>
+        <p>{isWishlist() ? "찜한 책" : "도서 검색 결과"}</p>
         <p>
           총 <span className="text-primary">{(totalCount ?? 0).toLocaleString()}</span>건
         </p>
@@ -53,7 +52,6 @@ export default function BookListSection({
   currentPage,
   startPage,
   endPage,
-  isWishlist,
   onPageChange,
 }: Props) {
   const [openAccordionValue, setOpenAccordionValue] = useState<string>("-1");
@@ -64,7 +62,7 @@ export default function BookListSection({
 
   if (isLoading) {
     return (
-      <BookListWrapper isWishlist={isWishlist}>
+      <BookListWrapper>
         <SpinnerPage />
       </BookListWrapper>
     );
@@ -72,7 +70,7 @@ export default function BookListSection({
 
   if (isError) {
     return (
-      <BookListWrapper isWishlist={isWishlist}>
+      <BookListWrapper>
         <Error />
       </BookListWrapper>
     );
@@ -80,14 +78,14 @@ export default function BookListSection({
 
   if (data?.meta.total_count === 0) {
     return (
-      <BookListWrapper isWishlist={isWishlist}>
-        <Empty text={isWishlist ? "찜한 책이 없습니다." : "검색된 결과가 없습니다."} />
+      <BookListWrapper>
+        <Empty text={isWishlist() ? "찜한 책이 없습니다." : "검색된 결과가 없습니다."} />
       </BookListWrapper>
     );
   }
 
   return (
-    <BookListWrapper totalCount={data?.meta.total_count} isWishlist={isWishlist}>
+    <BookListWrapper totalCount={data?.meta.total_count}>
       <Accordion
         type="single"
         collapsible

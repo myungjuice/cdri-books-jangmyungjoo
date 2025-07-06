@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/Accordion";
 import Button from "@/components/ui/Button";
 import Image from "@/components/ui/Image";
-import { cn } from "@/libs/utils";
+import { cn, isWishlist } from "@/libs/utils";
 import { useWishlistStore } from "@/store/wishlistStore";
 import type { Document } from "@/types/books";
 
@@ -75,7 +75,7 @@ export default function BookItem({ book, idx, openAccordionValue, onAccordionVal
 
   function handleWishListRemoveClick(isbn: string) {
     removeFromWishlist(isbn);
-    onAccordionValueChange("-1");
+    if (isWishlist()) onAccordionValueChange("-1");
   }
 
   return (

@@ -39,7 +39,6 @@ export default function BookListSection() {
         currentPage={page}
         startPage={startPage}
         endPage={endPage}
-        isWishlist
         onPageChange={setPage}
       />
     </section>
