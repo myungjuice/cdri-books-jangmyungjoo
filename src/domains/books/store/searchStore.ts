@@ -15,6 +15,16 @@ type SearchStoreState = {
   clearSubmittedSearch: () => void;
 };
 
+const initialState: Pick<
+  SearchStoreState,
+  "search" | "detailSearch" | "target" | "submittedSearch"
+> = {
+  search: "",
+  detailSearch: "",
+  target: "title",
+  submittedSearch: "",
+};
+
 export const useSearchStore = create<SearchStoreState>()(
   devtools(
     (set) => ({
@@ -25,7 +35,7 @@ export const useSearchStore = create<SearchStoreState>()(
       setDetailSearch: (detailSearch) => set({ detailSearch }),
       setTarget: (target) => set({ target }),
       setSubmittedSearch: (submittedSearch) => set({ submittedSearch }),
-      clearSubmittedSearch: () => set({ search: "", submittedSearch: "" }),
+      clearSubmittedSearch: () => set({ ...initialState }),
     }),
     { name: "SearchStore" },
   ),
