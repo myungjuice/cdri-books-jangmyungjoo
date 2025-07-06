@@ -9,7 +9,7 @@ const navMenus = [
 
 export default function Header() {
   return (
-    <header className="relative mx-auto flex h-[64px] w-full max-w-[1920px] items-center">
+    <header className="relative mx-auto flex h-20 w-full max-w-[1920px] items-center">
       <div className="absolute top-1/2 left-8 -translate-y-1/2 tracking-tight select-none">
         <h1 className="text-title-1 text-text-primary">CERTICOS BOOKS</h1>
       </div>
