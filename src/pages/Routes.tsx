@@ -1,16 +1,24 @@
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 
+import RootLayout from "@/components/layouts/RootLayout";
+
 import BooksPage from "./BooksPage";
 import WishlistPage from "./WishlistPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <BooksPage />,
-  },
-  {
-    path: "/wishlist",
-    element: <WishlistPage />,
+    element: <RootLayout />,
+    children: [
+      {
+        path: "/",
+        element: <BooksPage />,
+      },
+      {
+        path: "/wishlist",
+        element: <WishlistPage />,
+      },
+    ],
   },
   {
     path: "*",
