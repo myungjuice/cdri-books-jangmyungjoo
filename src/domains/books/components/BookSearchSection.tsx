@@ -5,7 +5,7 @@ import Button from "@/components/ui/Button";
 import { useSearchHistoryStore } from "@/domains/books/store/searchHistoryStore";
 import { useSearchStore } from "@/domains/books/store/searchStore";
 
-export default function BooksSearchSection() {
+export default function BookSearchSection() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
