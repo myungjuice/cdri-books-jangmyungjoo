@@ -6,6 +6,7 @@ type SearchStoreState = {
   submittedSearch: string;
   setSearch: (search: string) => void;
   setSubmittedSearch: (submittedSearch: string) => void;
+  clearSubmittedSearch: () => void;
 };
 
 export const useSearchStore = create<SearchStoreState>()(
@@ -15,6 +16,7 @@ export const useSearchStore = create<SearchStoreState>()(
       submittedSearch: "",
       setSearch: (search) => set({ search }),
       setSubmittedSearch: (submittedSearch) => set({ submittedSearch }),
+      clearSubmittedSearch: () => set({ search: "", submittedSearch: "" }),
     }),
     { name: "SearchStore" },
   ),
