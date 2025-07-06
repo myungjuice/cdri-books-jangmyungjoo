@@ -79,6 +79,14 @@ const typography = {
       letterSpacing: "0%",
     },
   ],
+  "small-2": [
+    "10px",
+    {
+      fontWeight: 500,
+      lineHeight: "16px",
+      letterSpacing: "0%",
+    },
+  ],
 };
 
 export default typography;
